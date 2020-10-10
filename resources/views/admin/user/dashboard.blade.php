@@ -46,10 +46,10 @@
                             <span class="glyphicon glyphicon-edit"></span> Xem
                         </a>
                         <a class="edit-modal btn btn-info" href="/editprofile/{{$user->id}}">
-                            <span class="glyphicon glyphicon-edit"></span> Edit
+                            <span class="glyphicon glyphicon-edit"></span> Sửa
                         </a>
                         <a class="delete-modal btn btn-danger" href="/delete/{{$user->id}}" onclick="return confirm('Bạn có chắc chắn xóa?')">
-                            <span class="glyphicon glyphicon-trash"></span> Delete
+                            <span class="glyphicon glyphicon-trash"></span> Xóa
                         </a></td>
                 </tr>
                 @endforeach

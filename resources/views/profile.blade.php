@@ -48,7 +48,7 @@
                         <thead>
                             <tr>
                                 <th>Thông tin chi tiết</th>
-                                <th class="text-center"><a class="btn btn-sm btn-outline-success" href="add_chatmessage.php?id=<?php echo $user->id; ?>">Nhắn tin</a></th>
+                                <th class="text-center"><a class="btn btn-sm btn-outline-success" href="/addMessage/{{$user->id}}">Nhắn tin</a></th>
                             </tr>
                         </thead>
                         <tbody>

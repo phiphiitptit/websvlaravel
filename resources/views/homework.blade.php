@@ -37,11 +37,11 @@
 
                             <a class="btn btn-info" href="/viewHomework/{{$d->id}}">
                                 Xem</a>
-                            <a class="btn btn-info" href="#">
+                            <a class="btn btn-info" href="/downloadHomework/{{$d->id}}">
                                 Dowload</a>
-                            <a class="btn btn-info" href="#">
-                                Upload</a>
-                            <a class="btn btn-info" href="/viewHomework/{{$d->id}}" onclick="return confirm('Bạn có chắc chắn xóa?')">
+                            <!-- <a class="btn btn-info" href="#">
+                                Upload</a> -->
+                            <a class="btn btn-info btn-danger" href="/deleteHomework/{{$d->id}}" onclick="return confirm('Bạn có chắc chắn xóa?')">
                                 Xóa</a>
 
                         </td>

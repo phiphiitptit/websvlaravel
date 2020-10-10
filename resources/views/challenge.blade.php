@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
         <div class="btn-group mr-2">
-            <a class="btn btn-info" href="add_challenge.php">
+            <a class="btn btn-info" href="{{route('addChallenge')}}">
                 Thêm Challenge</a>
         </div>
 
@@ -31,14 +31,10 @@
                         <td><?php echo $d->name; ?></td>
                         <td><?php echo $d->created_at; ?></td>
                         <td>
-                            <a class="btn btn-info" href="view_challenge.php?id=<?php echo $d->id; ?>">
+                            <a class="btn btn-info" href="/viewChallenge/{{$d->id}}">
                                 Xem</a>
-
-                            <a class="btn btn-info" href="add_challenge.php?id=<?php echo $d->id; ?>">
-                                Sửa</a>
-                            <a class="btn btn-info" href="add_challenge_post.php?iddelete=<?php echo $d->id; ?>" onclick="return confirm('Bạn có chắc chắn xóa?')">
+                            <a class="btn btn-info btn-danger" href="/deleteChallenge/{{$d->id}}" onclick="return confirm('Bạn có chắc chắn xóa?')">
                                 Xóa</a>
-
                         </td>
 
                     </tr>

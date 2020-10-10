@@ -52,6 +52,18 @@ Route::middleware(['admin'])->group(function(){
         'as'    => 'addHomework',
         'uses'  => 'Admin\AdminHomeworkController@showForm'
     ]);
+    Route::get('/viewHomework/{id}', [
+        'as'    => 'viewHomework',
+        'uses'  => 'Admin\AdminHomeworkController@viewHomework'
+    ]);
+    Route::get('/downloadHomework/{id}', [
+        'as'    => 'downloadHomework',
+        'uses'  => 'Admin\AdminHomeworkController@downloadHomework'
+    ]);
+    Route::get('/deleteHomework/{id}', [
+        'as'    => 'deleteHomework',
+        'uses'  => 'Admin\AdminHomeworkController@deleteHomework'
+    ]);
     Route::post('/addHomework', [
         'as'    => 'addHomework',
         'uses'  => 'Admin\AdminHomeworkController@addHomework'
@@ -59,6 +71,39 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/challenge', [
         'as'    => 'challenge',
         'uses'  => 'Admin\AdminChallengeController@getData'
+    ]);
+    Route::get('/addChallenge', [
+        'as'    => 'addChallenge',
+        'uses'  => 'Admin\AdminChallengeController@showForm'
+    ]);
+    Route::post('/addChallenge', [
+        'as'    => 'addChallenge',
+        'uses'  => 'Admin\AdminChallengeController@addChallenge'
+    ]);
+    Route::post('/subChallenge', [
+        'as'    => 'subChallenge',
+        'uses'  => 'Admin\AdminChallengeController@subChallenge'
+    ]);
+    Route::get('/viewChallenge/{id}', [
+        'as'    => 'viewChallenge',
+        'uses'  => 'Admin\AdminChallengeController@viewChallenge'
+    ]);
+    
+    Route::get('/deleteChallenge/{id}', [
+        'as'    => 'deleteChallenge',
+        'uses'  => 'Admin\AdminChallengeController@deleteChallenge'
+    ]);
+    Route::get('/addMessage/{id}', [
+        'as'    => 'addMessage',
+        'uses'  => 'Admin\AdminMessageController@showForm'
+    ]);
+    Route::get('/message', [
+        'as'    => 'message',
+        'uses'  => 'Admin\AdminMessageController@getData'
+    ]);
+    Route::post('/addMessage/{id}', [
+        'as'    => 'addMessage',
+        'uses'  => 'Admin\AdminMessageController@sendMessage'
     ]);
     Route::post('/admin/logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 });
