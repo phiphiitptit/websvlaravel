@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputName">Họ tên</label>
-                <input type="text" class="form-control" name="name" required="required" id="inputName" value="{{$user[0]->name}}">
+                <input type="text" class="form-control" name="name" required="required" id="inputName" value="{{$user[0]->name}}" readonly>
             </div>
 
             <div class="form-group col-md-6">
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword">Mật khẩu</label>
-                <input type="password" class="form-control" id="inputPassword" name="password" required="required" value="{{$user[0]->password}}" readonly>
+                <input type="password" class="form-control" id="inputPassword" name="password" required="required" value="{{$user[0]->password}}" >
             </div>
 
             <div class="form-group col-md-6">
