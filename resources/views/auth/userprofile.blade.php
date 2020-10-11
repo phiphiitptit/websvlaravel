@@ -1,4 +1,4 @@
-@extends('layouts.dashboarduser')')
+@extends('layouts.dashboarduser')
 
 @section('content')
 <div class="container-fluid">
@@ -48,7 +48,7 @@
                         <thead>
                             <tr>
                                 <th>Thông tin chi tiết</th>
-                                <th class="text-center"><a class="btn btn-sm btn-outline-success" href="/addMessage/{{$user->id}}">Nhắn tin</a></th>
+                                <th class="text-center"><a class="btn btn-sm btn-outline-success" href="/useraddMessage/{{$user->id}}">Nhắn tin</a></th>
                             </tr>
                         </thead>
                         <tbody>

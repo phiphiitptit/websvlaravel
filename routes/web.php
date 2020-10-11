@@ -18,10 +18,79 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function(){
     Route::get('/home', 'UserDataController@getData')->name('home');
-     Route::any('/userprofile/{userId}', [
+    Route::get('/userprofile/{userId}', [
         'as'    => 'userprofile',
         'uses'  => 'UserDataController@profile'
     ]);
+    Route::get('/useraddMessage/{id}', [
+        'as'    => 'useraddMessage',
+        'uses'  => 'UserMessageController@showForm'
+    ]); 
+    Route::post('/useraddMessage/{id}', [
+        'as'    => 'useraddMessage',
+        'uses'  => 'UserMessageController@sendMessage'
+    ]); 
+    Route::get('/userMessage', [
+        'as'    => 'userMessage',
+        'uses'  => 'UserMessageController@getData'
+    ]); 
+    Route::get('/userViewMessage/{id}', [
+        'as'    => 'userViewMessage',
+        'uses'  => 'UserMessageController@viewMessage'
+    ]); 
+    Route::get('/userEditMessage/{id}', [
+        'as'    => 'userEditMessage',
+        'uses'  => 'UserMessageController@editMessage'
+    ]); 
+    Route::get('/userSeenMessage/{id}', [
+        'as'    => 'userSeenMessage',
+        'uses'  => 'UserMessageController@seenMessage'
+    ]);
+    Route::post('/userEditMessage/{id}', [
+        'as'    => 'userEditMessage',
+        'uses'  => 'UserMessageController@updateMessage'
+    ]); 
+    Route::get('/userDeleteMessage/{id}', [
+        'as'    => 'userDeleteMessage',
+        'uses'  => 'UserMessageController@deleteMessage'
+    ]); 
+    Route::get('/userHomework', [
+        'as'    => 'userHomework',
+        'uses'  => 'UserHomeworkController@getData'
+    ]); 
+    Route::get('/userDownloadHomework/{id}', [
+        'as'    => 'userDownloadHomework',
+        'uses'  => 'UserHomeworkController@downloadHomework'
+    ]); 
+    Route::get('/uploadHomework/{id}', [
+        'as'    => 'uploadHomework',
+        'uses'  => 'UserHomeworkController@getHomework'
+    ]); 
+    Route::post('/uploadHomework/{id}', [
+        'as'    => 'uploadHomework',
+        'uses'  => 'UserHomeworkController@uploadHomework'
+    ]); 
+    Route::get('/userChallenge', [
+        'as'    => 'userChallenge',
+        'uses'  => 'UserChallengeController@getData'
+    ]); 
+    Route::get('/userViewChallenge/{id}', [
+        'as'    => 'userViewChallenge',
+        'uses'  => 'UserChallengeController@showChallenge'
+    ]); 
+    Route::post('/userSubChallenge', [
+        'as'    => 'userSubChallenge',
+        'uses'  => 'UserChallengeController@subChallenge'
+    ]);
+    Route::get('/userEditUser', [
+        'as'    => 'userEditUser',
+        'uses'  => 'UserDataController@showUser'
+    ]);
+    Route::post('/userEditprofile', [
+        'as'    => 'userEditprofile',
+        'uses'  => 'UserDataController@editUser'
+    ]);
+  
 });
 Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\LoginController@login')->name('admin.login');
@@ -72,6 +141,10 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/downloadHomework/{id}', [
         'as'    => 'downloadHomework',
         'uses'  => 'Admin\AdminHomeworkController@downloadHomework'
+    ]);
+    Route::get('/downloadSubHomework/{id}', [
+        'as'    => 'downloadSubHomework',
+        'uses'  => 'Admin\AdminHomeworkController@downloadSubHomework'
     ]);
     Route::get('/deleteHomework/{id}', [
         'as'    => 'deleteHomework',

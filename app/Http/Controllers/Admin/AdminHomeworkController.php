@@ -34,6 +34,32 @@ class AdminHomeworkController extends Controller
             ->get();
         return view('viewHomework', ['allSub' => $data]);
     }
+    public function downloadSubHomework($id){
+        // $id = $id;
+
+        // fetch file to download from database
+        $file = DB::select('select * from sub_result where id = ?', [$id]);
+        $filepath = 'homeworks/student/sv'.$id.'/' . $file[0]->name;
+
+        if (file_exists($filepath)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($filepath));
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filepath));
+
+            //This part of code prevents files from being corrupted after download
+            ob_clean();
+            flush();
+
+            readfile($filepath);
+
+            // Now update downloads count
+        }
+
+    }
     public function addHomework(Request $request)
     {
 
