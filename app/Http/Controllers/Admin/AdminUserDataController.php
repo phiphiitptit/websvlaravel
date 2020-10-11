@@ -9,7 +9,8 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use App\Http\Controllers\Admin\Auth;
+
+use Illuminate\Support\Facades\Auth;
 
 class AdminUserDataController extends Controller
 {
@@ -48,6 +49,30 @@ class AdminUserDataController extends Controller
     {
         $users = DB::select('select * from users where id = ?', [$id]);
         return view('editprofile', ['user' => $users]);
+    }
+    public function showUser()
+    {
+        $users = DB::select('select * from users where id = ?', [Auth::user()->id]);
+        return view('editUser', ['user' => $users]);
+    }
+
+    public function editUser(Request $request)
+    {
+        $id = Auth::user()->id;
+        $users = DB::select('select * from users where id = ?', [$id]);
+        $name = $request->input('name');
+        $username = $request->input('username');
+        $password = $request->input('password');
+        if ($password != $users[0]->password) {
+            $password = bcrypt($password);
+        }
+        $email = $request->input('email');
+        $telephone = $request->input('telephone');
+        DB::update('update users set name = ?,username=?,email=?,password=?,telephone=? where id = ?', [$name, $username, $email, $password, $telephone, $id]);
+
+        $user = \App\User::all();
+
+        return view('admin.user.dashboard', ['allUser' => $user]);
     }
     public function editProfile(Request $request)
     {

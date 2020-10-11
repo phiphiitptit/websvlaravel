@@ -1,23 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.dashboarduser')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-striped table-sm" style="text-align: center;" id="tableUser">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Công việc</th>
+                    <th>Điện thoại</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $count = 0; ?>
+                @foreach ($allUser as $user)
+                <tr>
+                    <td><?php echo ++$count; ?></td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>
+                        <?php if ($user->usertype == '1') {
+                            echo "Giáo viên";
+                        } else {
+                            echo "Học sinh";
+                        } ?>
+                    </td>
+                    <td>{{$user->telephone}}</td>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+                    <td>
+                        <a class="view-modal btn btn-info" href="/userprofile/{{$user->id}}">
+
+                            <span class="glyphicon glyphicon-edit"></span> Xem
+                        </a>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection

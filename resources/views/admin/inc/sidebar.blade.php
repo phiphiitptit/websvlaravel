@@ -26,6 +26,12 @@
                     Quản lý tin nhắn <span class="sr-only">(current)</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('editUser') }}">
+                    <span class="iconify" data-icon="bi-patch-question" data-inline="false"></span>
+                   Cập nhập thông tin <span class="sr-only">(current)</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

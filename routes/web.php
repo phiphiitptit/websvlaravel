@@ -16,8 +16,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home', 'UserDataController@getData')->name('home');
+     Route::any('/userprofile/{userId}', [
+        'as'    => 'userprofile',
+        'uses'  => 'UserDataController@profile'
+    ]);
+});
 Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Admin\Auth\LoginController@login')->name('admin.login');
 Route::middleware(['admin'])->group(function(){
@@ -25,6 +30,14 @@ Route::middleware(['admin'])->group(function(){
     Route::any('/profile/{userId}', [
         'as'    => 'profile',
         'uses'  => 'Admin\AdminUserDataController@viewProfile'
+    ]);
+    Route::get('/editUser', [
+        'as'    => 'editUser',
+        'uses'  => 'Admin\AdminUserDataController@showUser'
+    ]);
+    Route::post('/editUser', [
+        'as'    => 'editUser',
+        'uses'  => 'Admin\AdminUserDataController@editUser'
     ]);
     Route::get('/editprofile/{userId}', [
         'as'    => 'editprofile',
@@ -89,6 +102,7 @@ Route::middleware(['admin'])->group(function(){
         'uses'  => 'Admin\AdminChallengeController@viewChallenge'
     ]);
     
+    
     Route::get('/deleteChallenge/{id}', [
         'as'    => 'deleteChallenge',
         'uses'  => 'Admin\AdminChallengeController@deleteChallenge'
@@ -100,6 +114,26 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/message', [
         'as'    => 'message',
         'uses'  => 'Admin\AdminMessageController@getData'
+    ]);
+    Route::get('/viewMessage/{id}', [
+        'as'    => 'viewMessage',
+        'uses'  => 'Admin\AdminMessageController@viewMessage'
+    ]);
+    Route::get('/editMessage/{id}', [
+        'as'    => 'editMessage',
+        'uses'  => 'Admin\AdminMessageController@editMessage'
+    ]);
+    Route::post('/editMessage/{id}', [
+        'as'    => 'editMessage',
+        'uses'  => 'Admin\AdminMessageController@updateMessage'
+    ]);
+    Route::get('/seenMessage/{id}', [
+        'as'    => 'seenMessage',
+        'uses'  => 'Admin\AdminMessageController@seenMessage'
+    ]);
+    Route::get('/deleteMessage/{id}', [
+        'as'    => 'deleteMessage',
+        'uses'  => 'Admin\AdminMessageController@deleteMessage'
     ]);
     Route::post('/addMessage/{id}', [
         'as'    => 'addMessage',

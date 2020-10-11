@@ -16,9 +16,9 @@ class UserDataController extends Controller
     {
         $user = \App\User::all();
 
-        return view('admin.user.dashboard', ['allUser' => $user]);
+        return view('home', ['allUser' => $user]);
     }
-    public function viewProfile($userId = null)
+    public function profile($userId = null)
     {
         $user = null;
 
@@ -28,7 +28,7 @@ class UserDataController extends Controller
             $user = \App\User::find(Auth::user()->id);
         }
 
-        return view('profile', [
+        return view('userprofile', [
             'user' => $user
         ]);
     }
